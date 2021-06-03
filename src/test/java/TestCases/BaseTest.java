@@ -1,4 +1,4 @@
-package Base;
+package TestCases;
 
 import Pages.HomePage;
 import org.junit.jupiter.api.AfterEach;
@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class BaseTest {
@@ -32,6 +34,8 @@ public class BaseTest {
     Populate the mandatory fields
     Click Submit button
     Verify Thanks message text
+
+
     */
 
     private WebDriver driver;
@@ -39,16 +43,18 @@ public class BaseTest {
     @BeforeEach //before test execution; browser needs to be open
     public void setUp(){
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get("http://jupiter.cloud.planittesting.com/");
 
         homePage = new HomePage(driver);
 
     }
 
-    @AfterEach
-    public void closeBrowser(){
-        driver.quit();
-    }
+//    @AfterEach
+//    public void closeBrowser(){
+//        driver.quit();
+//    }
 
 
 }
