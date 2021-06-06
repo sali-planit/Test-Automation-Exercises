@@ -27,10 +27,10 @@ public class ContactPage {
     public ContactPage(WebDriver driver){
         this.driver = driver;
     }
-    public void waitToLoad(){
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-    }
+//    public void waitToLoad(){
+//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//
+//    }
     public void clickSubmit(){
         driver.findElement(submitButton).click();
     }

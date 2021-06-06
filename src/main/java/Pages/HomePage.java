@@ -7,6 +7,8 @@ public class HomePage {
 
     private WebDriver driver;
     private By findContact = By.id("nav-contact");
+    private By findLogin = By.id("nav-login");
+
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -16,5 +18,11 @@ public class HomePage {
         driver.findElement(findContact).click();
         return new ContactPage(driver);
     }
+
+    public LoginPage clickLoginButton(){
+        driver.findElement(findLogin).click();
+        return new LoginPage(driver);
+    }
+
 
 }

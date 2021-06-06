@@ -1,6 +1,7 @@
-package Contact;
+package TestCases;
 
-import Base.BaseTest;
+import Pages.LoginPage;
+import TestCases.BaseTest;
 import Pages.ContactPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ public class ContactTest extends BaseTest {
     @DisplayName("Test Automation Exercise 1")
     public void testErrorShown(){
         ContactPage contactPage = homePage.clickContactButton();//clicks contact button
-        contactPage.waitToLoad();
+
 
         contactPage.setEmail("notavalidemail");
         Assertions.assertEquals (contactPage.getEmailError(),
@@ -31,7 +32,7 @@ public class ContactTest extends BaseTest {
     @DisplayName("Test Automation Exercise 2")
     public void submitErrorShown(){
         ContactPage contactPage = homePage.clickContactButton();//clicks contact button
-        contactPage.waitToLoad();
+
         contactPage.clickSubmit();
 
         Assertions.assertEquals (contactPage.getForenameError(),
@@ -53,20 +54,21 @@ public class ContactTest extends BaseTest {
 
     }
 
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 3")
     public void verifySubmit(){
         ContactPage contactPage = homePage.clickContactButton();
-        contactPage.waitToLoad();
         contactPage.setForename();
         String successText = "Thanks " + contactPage.getForename() +", we appreciate your feedback.";
         contactPage.setEmail("notavalidemail@valid.com");
         contactPage.setMessage("test automation is FUN!!!");
         contactPage.clickSubmit();
-        contactPage.waitToLoad();
         Assertions.assertEquals(contactPage.submitVerify(), successText, "Unable to locate success message");
 
     }
+
+
 }
 
 
