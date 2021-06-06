@@ -16,14 +16,15 @@ public class LoginTest extends BaseTest {
      */
     @Test
     @DisplayName("Test Automation Exercise 4")
-    public void verifyLogin(){
+    public void verifyLogin() {
+        String userName = "anyvaluewilldo";
+        String password = "letmein";
+
         LoginPage loginPage = homePage.clickLoginButton();
-        loginPage.setUserName("anyvaluewilldo");
-        loginPage.setPassword("letmein");
-        String getUName = loginPage.getUserName();
+        loginPage.setUserName(userName);
+        loginPage.setPassword(password);
         loginPage.clickLogin();
-        assertThat(getUName, equalTo(loginPage.displayedUserName()));
 
-
+        assertThat(userName, equalTo(loginPage.displayedUserName()));
     }
 }
