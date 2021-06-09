@@ -50,7 +50,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogin();
         loginPage.clickLogoutMenu();
         loginPage.clickLogoutButton();
-        assertThat(loginPage.displayedUserName(), not(equalTo(loginPage.userLoggedInVisible())));
+        assertThat(loginPage.displayedUserName(), equalTo(""));
 
 
     }

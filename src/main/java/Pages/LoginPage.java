@@ -38,14 +38,7 @@ public class LoginPage {
     public void clickLogoutButton(){
         driver.findElement(logoutButton).click();
     }
-    public boolean userLoggedInVisible(){
-        try {
-            driver.findElement(userLoggedIn);
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        }
-    }
+
 
 
 
