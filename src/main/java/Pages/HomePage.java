@@ -8,9 +8,10 @@ public class HomePage {
     private WebDriver driver;
     private By findContact = By.id("nav-contact");
     private By findLogin = By.id("nav-login");
+    private By findShop = By.id("nav-shop");
 
 
-    public HomePage(WebDriver driver){
+    public HomePage(final WebDriver driver){
         this.driver = driver;
     }
 
@@ -22,6 +23,11 @@ public class HomePage {
     public LoginPage clickLoginButton(){
         driver.findElement(findLogin).click();
         return new LoginPage(driver);
+    }
+
+    public ShopPage clickShopButton(){
+        driver.findElement(findShop).click();
+        return new ShopPage(driver);
     }
 
 

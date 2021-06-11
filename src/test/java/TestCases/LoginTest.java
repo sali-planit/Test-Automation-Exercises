@@ -38,6 +38,7 @@ public class LoginTest extends BaseTest {
     Click the logout button
     Validate that the username is not displayed
      */
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 5")
     public void verifyLogout(){
@@ -51,8 +52,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickLogoutMenu();
         loginPage.clickLogoutButton();
         assertThat(loginPage.displayedUserName(), equalTo(""));
-
-
     }
+
 
 }

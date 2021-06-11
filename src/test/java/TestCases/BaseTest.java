@@ -51,10 +51,10 @@ public class BaseTest {
 
     }
 
-//    @AfterEach
-//    public void closeBrowser(){
-//        driver.quit();
-//    }
+    @AfterEach
+    public void closeBrowser(){
+        driver.quit();
+    }
 
 
 }

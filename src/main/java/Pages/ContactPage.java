@@ -24,7 +24,7 @@ public class ContactPage {
 
 
 
-    public ContactPage(WebDriver driver){
+    public ContactPage(final WebDriver driver){
         this.driver = driver;
     }
 //    public void waitToLoad(){
