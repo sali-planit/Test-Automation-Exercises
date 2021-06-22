@@ -4,38 +4,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShopPage {
 
     private WebDriver driver;
-    private By toyList = By.tagName("h4");
-    private By toyPrice = By.cssSelector(".product-price.ng-binding");
-
-
-
 
     public ShopPage(final WebDriver driver) {
         this.driver = driver;
     }
 
-    public String GetToyName(String toyName) {
-        String toyNameAndPrice = "";
-        List<WebElement> toys = driver.findElements(toyList);
-        List<WebElement> priceTest = driver.findElements(toyPrice);
-        for (WebElement e : toys) {
-            if (e.getText().contains(toyName)) {
-                String getToyName = e.getText();
-                Integer indexNumber = toys.indexOf(e);
-                for (WebElement i : priceTest) {
-                    if(indexNumber.equals(priceTest.indexOf(i)))
-                        toyNameAndPrice = getToyName + i.getText();
 
-                }
-            }
+    private List<Product> getProducts() {
+        List<Product> productList = new ArrayList<>();
+        List<WebElement> items = driver.findElements(By.className("product"));
+        for (var item : items) {
+            Product product = new Product();
+            product.setTitle(item.findElement(By.cssSelector(".product-title")).getText());
+            product.setPrice(Double.parseDouble(item.findElement(By.cssSelector(".product-price")).getText().replace("$", "")));
+            //product.setBuy(item.findElement(By.className("btn")));
+            productList.add(product);
+
         }
-        System.out.println(toyNameAndPrice);
-        return toyNameAndPrice;
 
+        return productList;
     }
+
+    public Product getProduct(String toyName){
+        List<Product>productList = getProducts();
+        List<Product> matchedToy = productList.stream()
+                .filter(prod -> prod.title.equals(toyName))
+                .collect(Collectors.toList());
+        System.out.println(matchedToy.get(0).price);
+        Product product = matchedToy.get(0);
+
+        return product;
+    }
+
+
 }
