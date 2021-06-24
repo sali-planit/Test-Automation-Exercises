@@ -20,22 +20,13 @@ public class ShopTest extends BaseTest{
     From the home page go to the shop page
     Validate a given price for a given product title. For example given Teddy Bear validate that the price is 12.99
      */
-//    @Test
-//
-//    public void verifyPrice(){
-//        String toyName = "Handmade Doll";
-//        String Price = "$10.99";
-//        ShopPage shopPage = homePage.clickShopButton();
-//
-//        assertThat(shopPage.GetToyName(toyName), equalTo(Price));
-//
-//    }
+
     @Test
     @DisplayName("Test Automation Exercise 6")
     public void validateTeddyBearPrice() throws Exception {
         ShopPage shopPage = homePage.clickShopButton();
         Product product = shopPage.getProduct("Stuffed Frog");
-        assertThat(10.99, equalTo(product.getPrice()));
+        assertThat(product.getPrice(), equalTo(10.99));
     }
 
 }
