@@ -14,15 +14,15 @@ public class Product {
     public String getTitle() {
         return this.title;
     }
-
     public Double getPrice() {
         return this.price;
     }
-
+    public WebElement getBuy(){return this.buy;}
     public void setTitle(String title){
         this.title = title;
     }
     public void setPrice(Double price){
         this.price = price;
     }
+    public void setBuy(WebElement buy) {this.buy = buy;}
 }

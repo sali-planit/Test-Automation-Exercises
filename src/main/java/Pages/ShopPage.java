@@ -12,6 +12,7 @@ public class ShopPage {
 
     private WebDriver driver;
 
+    private By cartCount = By.cssSelector(".cart-count.ng-binding");
     public ShopPage(final WebDriver driver) {
         this.driver = driver;
     }
@@ -24,9 +25,8 @@ public class ShopPage {
             Product product = new Product();
             product.setTitle(item.findElement(By.cssSelector(".product-title")).getText());
             product.setPrice(Double.parseDouble(item.findElement(By.cssSelector(".product-price")).getText().replace("$", "")));
-            //product.setBuy(item.findElement(By.className("btn")));
+            product.setBuy(item.findElement(By.className("btn")));
             productList.add(product);
-
         }
 
         return productList;
@@ -41,6 +41,19 @@ public class ShopPage {
         Product product = matchedToy.get(0);
 
         return product;
+    }
+    public Product getProductPrice(Double toyPrice){
+        List<Product>productList = getProducts();
+        List<Product> matchedPrice = productList.stream()
+                .filter(prod -> prod.price.equals(toyPrice))
+                .collect(Collectors.toList());
+        System.out.println(matchedPrice.get(0).price);
+        Product product = matchedPrice.get(0);
+        return product;
+    }
+
+    public String cartQuantity(){
+        return driver.findElement(cartCount).getText();
     }
 
 
