@@ -32,17 +32,16 @@ public class ShopPage {
         return productList;
     }
 
-    public Product getProduct(String toyName){
+    public Product getProductByTitle(String toyName){
         List<Product>productList = getProducts();
         List<Product> matchedToy = productList.stream()
                 .filter(prod -> prod.title.equals(toyName))
                 .collect(Collectors.toList());
         System.out.println(matchedToy.get(0).price);
         Product product = matchedToy.get(0);
-
         return product;
     }
-    public Product getProductPrice(Double toyPrice){
+    public Product getProductByPrice(Double toyPrice){
         List<Product>productList = getProducts();
         List<Product> matchedPrice = productList.stream()
                 .filter(prod -> prod.price.equals(toyPrice))
@@ -52,9 +51,10 @@ public class ShopPage {
         return product;
     }
 
-    public String cartQuantity(){
-        return driver.findElement(cartCount).getText();
+    public Integer cartQuantity(){
+        return Integer.parseInt(driver.findElement(cartCount).getText());
     }
+
 
 
 }

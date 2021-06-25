@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ShopTest extends BaseTest{
 
+
     /*
     Shop Test Cases
     Test case 6:
@@ -26,7 +27,7 @@ public class ShopTest extends BaseTest{
     @DisplayName("Test Automation Exercise 6")
     public void validateTeddyBearPrice() throws Exception {
         ShopPage shopPage = homePage.clickShopButton();
-        Product product = shopPage.getProduct("Stuffed Frog");
+        Product product = shopPage.getProductByTitle("Stuffed Frog");
         assertThat(product.getPrice(), equalTo(10.99));
     }
 
@@ -38,11 +39,11 @@ public class ShopTest extends BaseTest{
      */
     @Test
     @DisplayName("Test Automation Exercise 7")
-    public void verifyCart() throws Exception {
+    public void checkCartCounter() {
         ShopPage shopPage = homePage.clickShopButton();
-        Product product = shopPage.getProductPrice(9.99);
+        Integer cartCounter = shopPage.cartQuantity();
+        Product product = shopPage.getProductByPrice(9.99);
         product.getBuy().click();
-        assertThat(shopPage.cartQuantity(), equalTo("1"));
+        assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
     }
-    
 }
