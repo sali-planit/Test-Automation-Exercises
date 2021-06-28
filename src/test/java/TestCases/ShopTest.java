@@ -1,14 +1,10 @@
 package TestCases;
 
-import Pages.LoginPage;
 import Pages.ShopPage;
 import Pages.Product;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -27,7 +23,7 @@ public class ShopTest extends BaseTest{
     @DisplayName("Test Automation Exercise 6")
     public void validateTeddyBearPrice() throws Exception {
         ShopPage shopPage = homePage.clickShopButton();
-        Product product = shopPage.getProductByTitle("Stuffed Frog");
+        Product product = shopPage.getProduct( prod -> prod.getTitle().equals("Stuffed Frog"));
         assertThat(product.getPrice(), equalTo(10.99));
     }
 
@@ -42,7 +38,7 @@ public class ShopTest extends BaseTest{
     public void checkCartCounter() {
         ShopPage shopPage = homePage.clickShopButton();
         Integer cartCounter = shopPage.cartQuantity();
-        Product product = shopPage.getProductByPrice(9.99);
+        Product product = shopPage.getProduct( prod -> prod.getPrice().equals(14.99));
         product.getBuy().click();
         assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
     }

@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ShopPage {
 
     private WebDriver driver;
-
     private By cartCount = By.cssSelector(".cart-count.ng-binding");
     public ShopPage(final WebDriver driver) {
         this.driver = driver;
@@ -32,29 +32,17 @@ public class ShopPage {
         return productList;
     }
 
-    public Product getProductByTitle(String toyName){
-        List<Product>productList = getProducts();
-        List<Product> matchedToy = productList.stream()
-                .filter(prod -> prod.title.equals(toyName))
+    public Product getProduct(Predicate<Product> filter){
+        List<Product> products = getProducts().stream()
+                .filter(filter)
                 .collect(Collectors.toList());
-        System.out.println(matchedToy.get(0).price);
-        Product product = matchedToy.get(0);
+        Product product = products.get(0);
         return product;
     }
-    public Product getProductByPrice(Double toyPrice){
-        List<Product>productList = getProducts();
-        List<Product> matchedPrice = productList.stream()
-                .filter(prod -> prod.price.equals(toyPrice))
-                .collect(Collectors.toList());
-        System.out.println(matchedPrice.get(0).price);
-        Product product = matchedPrice.get(0);
-        return product;
-    }
+
+
 
     public Integer cartQuantity(){
         return Integer.parseInt(driver.findElement(cartCount).getText());
     }
-
-
-
 }
