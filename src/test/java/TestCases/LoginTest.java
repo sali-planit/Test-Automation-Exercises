@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
     Click the Login button
     Verify that the username appears in the menu bar
      */
-    @Disabled
+    //@Disabled
     @Test
     @DisplayName("Test Automation Exercise 4")
     public void verifyLogin() {
@@ -25,6 +25,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setUserName(userName);
         loginPage.setPassword(password);
+        loginPage.clickTermsButton();
         loginPage.clickLogin();
 
         assertThat(loginPage.displayedUserName(), equalTo(userName));
@@ -38,7 +39,7 @@ public class LoginTest extends BaseTest {
     Click the logout button
     Validate that the username is not displayed
      */
-    @Disabled
+    //@Disabled
     @Test
     @DisplayName("Test Automation Exercise 5")
     public void verifyLogout(){
@@ -48,6 +49,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setUserName(userName);
         loginPage.setPassword(password);
+        loginPage.clickTermsButton();
         loginPage.clickLogin();
         loginPage.clickLogoutMenu();
         loginPage.clickLogoutButton();

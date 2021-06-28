@@ -19,6 +19,7 @@ public class LoginPage {
     private By loginButton = By.cssSelector(".btn.btn-primary");
     private By logoutMenuButton = By.id("nav-logout");
     private By logoutButton = By.cssSelector(".btn.btn-success");
+    private By termsButton = By.id("agree");
 
     public LoginPage(final WebDriver driver){
         this.driver = driver;
@@ -47,7 +48,9 @@ public class LoginPage {
         List<WebElement> logoutButtons = driver.findElements(logoutButton);
         logoutButtons.get(1).click();
     }
-
+    public void clickTermsButton(){
+        driver.findElement(termsButton).click();
+    }
 
 
 

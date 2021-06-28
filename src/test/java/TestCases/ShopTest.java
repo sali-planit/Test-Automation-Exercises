@@ -18,7 +18,7 @@ public class ShopTest extends BaseTest{
     From the home page go to the shop page
     Validate a given price for a given product title. For example given Teddy Bear validate that the price is 12.99
      */
-    @Disabled
+    //@Disabled
     @Test
     @DisplayName("Test Automation Exercise 6")
     public void validateTeddyBearPrice() throws Exception {
@@ -38,7 +38,7 @@ public class ShopTest extends BaseTest{
     public void checkCartCounter() {
         ShopPage shopPage = homePage.clickShopButton();
         Integer cartCounter = shopPage.cartQuantity();
-        Product product = shopPage.getProduct( prod -> prod.getPrice().equals(14.99));
+        Product product = shopPage.getProduct( prod -> prod.getPrice().equals(10.99));
         product.getBuy().click();
         assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
     }
