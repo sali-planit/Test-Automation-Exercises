@@ -8,12 +8,21 @@ public class Product {
     private WebDriver driver;
     String title;
     Double price;
-    //Integer rating;
+    Integer rating;
     WebElement buy;
 
     public String getTitle() {
         return this.title;
     }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
     public Double getPrice() {
         return this.price;
     }
@@ -25,4 +34,5 @@ public class Product {
         this.price = price;
     }
     public void setBuy(WebElement buy) {this.buy = buy;}
+
 }

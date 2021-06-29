@@ -13,6 +13,12 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
+    /*
+    Test case 8:
+    Change the URL in the BaseTest to http://jupiter2.cloud.planittesting.com
+    Re-run all previous test cases, including Contact and Login test cases
+    Fix any issues caused by the new code drop
+     */
 
     private WebDriver driver;
     protected HomePage homePage;

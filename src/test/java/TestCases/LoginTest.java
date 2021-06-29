@@ -39,7 +39,7 @@ public class LoginTest extends BaseTest {
     Click the logout button
     Validate that the username is not displayed
      */
-    //@Disabled
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 5")
     public void verifyLogout(){

@@ -18,7 +18,7 @@ public class ShopTest extends BaseTest{
     From the home page go to the shop page
     Validate a given price for a given product title. For example given Teddy Bear validate that the price is 12.99
      */
-    //@Disabled
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 6")
     public void validateTeddyBearPrice() throws Exception {
@@ -33,12 +33,29 @@ public class ShopTest extends BaseTest{
     Buy the first product you find with a given price. For example buy a product with price 9.99
     Validate that the cart menu displays 1
      */
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 7")
     public void checkCartCounter() {
         ShopPage shopPage = homePage.clickShopButton();
         Integer cartCounter = shopPage.cartQuantity();
         Product product = shopPage.getProduct( prod -> prod.getPrice().equals(10.99));
+        product.getBuy().click();
+        assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
+    }
+
+    /*
+    Test case 9:
+    From the home page go to the shop page
+    Buy a product with 5 stars
+    Validate that the cart menu displays 1
+     */
+    @Test
+    @DisplayName("Test Automation Exercise 9")
+    public void getFiveStarProduct(){
+        ShopPage shopPage = homePage.clickShopButton();
+        Integer cartCounter = shopPage.cartQuantity();
+        Product product = shopPage.getProduct( prod -> prod.getRating().equals(5));
         product.getBuy().click();
         assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
     }
