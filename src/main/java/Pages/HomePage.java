@@ -9,7 +9,7 @@ public class HomePage {
     private By findContact = By.id("nav-contact");
     private By findLogin = By.id("nav-login");
     private By findShop = By.id("nav-shop");
-
+    private By findCart = By.id("nav-cart");
 
     public HomePage(final WebDriver driver){
         this.driver = driver;
@@ -29,6 +29,9 @@ public class HomePage {
         driver.findElement(findShop).click();
         return new ShopPage(driver);
     }
-
+    public CartPage clickCartButton(){
+        driver.findElement(findCart).click();
+        return new CartPage(driver);
+    }
 
 }

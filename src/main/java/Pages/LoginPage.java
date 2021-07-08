@@ -48,7 +48,7 @@ public class LoginPage {
         List<WebElement> logoutButtons = driver.findElements(logoutButton);
         logoutButtons.get(1).click();
     }
-    public void clickTermsButton(){
+    public void checkTermsButton(){
         WebElement checkBox = driver.findElement(termsButton);
         if (!checkBox.isSelected())
             checkBox.click();

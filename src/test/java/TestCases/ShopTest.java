@@ -1,5 +1,6 @@
 package TestCases;
 
+import Pages.CartPage;
 import Pages.ShopPage;
 import Pages.Product;
 import org.junit.jupiter.api.Disabled;
@@ -50,6 +51,7 @@ public class ShopTest extends BaseTest{
     Buy a product with 5 stars
     Validate that the cart menu displays 1
      */
+    @Disabled
     @Test
     @DisplayName("Test Automation Exercise 9")
     public void getFiveStarProduct(){
@@ -59,4 +61,30 @@ public class ShopTest extends BaseTest{
         product.getBuy().click();
         assertThat(shopPage.cartQuantity(), equalTo(cartCounter + 1));
     }
+    /*
+    Cart Page Tests
+    Test case 10:
+    Buy 2 Stuffed Frog, 5 Fluffy Bunny, 3 Valentine Bear
+    Go to the cart page
+    Verify the price for each product
+    Verify that each product’s sub total = product price * quantity
+    Verify that total = sum(sub totals)
+     */
+    @Test
+    @DisplayName("Test Automation Exercise 10")
+    public void checkCart(){
+        ShopPage shopPage = homePage.clickShopButton();
+        shopPage.buyLoop("Stuffed Frog", 2);
+        shopPage.buyLoop("Fluffy Bunny", 5);
+        shopPage.buyLoop("Valentine Bear", 3);
+        CartPage cartPage = homePage.clickCartButton();
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Stuffed Frog")).getCartPrice(), equalTo(10.99));
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Fluffy Bunny")).getCartPrice(), equalTo(8.99));
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Valentine Bear")).getCartPrice(), equalTo(13.99));
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Stuffed Frog")).getCartSubtotal(), equalTo(10.99*2));
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Fluffy Bunny")).getCartSubtotal(), equalTo(8.99*5));
+        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Valentine Bear")).getCartSubtotal(), equalTo(13.99*3));
+        assertThat(cartPage.totalPrice(), equalTo((10.99*2)+(8.99*5)+(13.99*3)));
+    }
+
 }

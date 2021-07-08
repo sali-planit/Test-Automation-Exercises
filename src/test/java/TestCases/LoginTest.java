@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setUserName(userName);
         loginPage.setPassword(password);
-        loginPage.clickTermsButton();
+        loginPage.checkTermsButton();
         loginPage.clickLogin();
 
         assertThat(loginPage.displayedUserName(), equalTo(userName));
@@ -49,7 +49,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLoginButton();
         loginPage.setUserName(userName);
         loginPage.setPassword(password);
-        loginPage.clickTermsButton();
+        loginPage.checkTermsButton();
         loginPage.clickLogin();
         loginPage.clickLogoutMenu();
         loginPage.clickLogoutButton();

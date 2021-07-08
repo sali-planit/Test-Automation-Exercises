@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class ShopPage {
 
@@ -43,5 +42,12 @@ public class ShopPage {
 
     public Integer cartQuantity(){
         return Integer.parseInt(driver.findElement(cartCount).getText());
+    }
+
+    public Product buyLoop(String prodTitle, Integer prodQuantity) {
+        for (int i = 0; i < prodQuantity; i++){
+            getProduct(prod -> prod.getTitle().equals(prodTitle)).getBuy().click();
+        }
+        return null;
     }
 }
