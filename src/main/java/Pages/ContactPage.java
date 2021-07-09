@@ -8,10 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 
-public class ContactPage {
+public class ContactPage extends BasePage{
 
-    private WebDriver driver;
-    private WebDriverWait wait;
     private By emailField = By.id("email");
     private By emailError = By.id("email-err");
     private By forenameField = By.id("forename");
@@ -25,12 +23,9 @@ public class ContactPage {
 
 
     public ContactPage(final WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
-//    public void waitToLoad(){
-//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//
-//    }
+
     public void clickSubmit(){
         driver.findElement(submitButton).click();
     }

@@ -11,8 +11,6 @@ import java.util.List;
 
 public class LoginPage extends BasePage{
 
-    private WebDriver driver;
-
     private By userNameField = By.id("loginUserName");
     private By passwordField = By.id("loginPassword");
     private By userLoggedIn = By.id("nav-user");

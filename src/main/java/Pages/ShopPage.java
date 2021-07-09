@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 
 public class ShopPage extends BasePage{
 
-    private WebDriver driver;
     private By cartCount = By.cssSelector(".cart-count.ng-binding");
 
     public ShopPage(final WebDriver driver) {

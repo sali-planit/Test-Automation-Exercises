@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class CartPage extends BasePage{
-    private WebDriver driver;
+
     private By totalPrice = By.className("total");
 
 
