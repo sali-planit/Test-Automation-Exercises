@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class CartPage {
+public class CartPage extends BasePage{
     private WebDriver driver;
     private By totalPrice = By.className("total");
 
 
 
     public CartPage(final WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
 
 

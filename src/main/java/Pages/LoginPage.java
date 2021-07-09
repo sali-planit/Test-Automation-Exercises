@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
     private WebDriver driver;
 
@@ -22,7 +22,7 @@ public class LoginPage {
     private By termsButton = By.id("agree");
 
     public LoginPage(final WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
 
     public void setUserName(String userName){
