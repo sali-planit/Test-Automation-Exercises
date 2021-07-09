@@ -1,6 +1,6 @@
 package Pages;
 
-import Pages.ShopPage;
+import components.Cart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,25 +14,27 @@ public class CartPage {
     private By totalPrice = By.className("total");
 
 
+
     public CartPage(final WebDriver driver){
         this.driver = driver;
     }
 
 
-    private List<Product> getCartProducts() {
-        List<Product> cartProductList = new ArrayList<>();
+    private List<Cart> getCartProducts() {
+        List<Cart> cartProductList = new ArrayList<>();
         List<WebElement> items = driver.findElements(By.className("cart-item"));
         for (var item : items) {
-            Product cartProduct = new Product();
+            Cart cartProduct = new Cart();
             cartProduct.setCartTitle(item.findElement(By.className("ng-binding")).getText());
             cartProduct.setCartPrice(Double.parseDouble(item.findElements(By.className("ng-binding")).get(1).getText().replace("$", "")));
             cartProduct.setCartSubtotal(Double.parseDouble(item.findElements(By.className("ng-binding")).get(2).getText().replace("$", "")));
+            cartProduct.setQuantity(Integer.parseInt(item.findElement(By.className("ng-valid-number")).getAttribute("value")));
             cartProductList.add(cartProduct);
         }
         System.out.println(cartProductList);
         return cartProductList;
     }
-    public Product getCartProduct(Predicate<Product> filter){
+    public Cart getCartProduct(Predicate<Cart> filter){
         return getCartProducts().stream()
                 .filter(filter)
                 .findFirst().orElseThrow();

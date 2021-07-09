@@ -2,7 +2,8 @@ package TestCases;
 
 import Pages.CartPage;
 import Pages.ShopPage;
-import Pages.Product;
+import components.Cart;
+import components.Product;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -73,18 +74,30 @@ public class ShopTest extends BaseTest{
     @Test
     @DisplayName("Test Automation Exercise 10")
     public void checkCart(){
-        ShopPage shopPage = homePage.clickShopButton();
+        var shopPage = homePage.clickShopButton();
+        Product shopFrog = shopPage.getProduct(p -> p.getTitle().equals("Stuffed Frog"));
+        Product shopBunny = shopPage.getProduct(p -> p.getTitle().equals("Fluffy Bunny"));
+        Product shopBear = shopPage.getProduct(p -> p.getTitle().equals("Valentine Bear"));
         shopPage.buyLoop("Stuffed Frog", 2);
         shopPage.buyLoop("Fluffy Bunny", 5);
         shopPage.buyLoop("Valentine Bear", 3);
-        CartPage cartPage = homePage.clickCartButton();
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Stuffed Frog")).getCartPrice(), equalTo(10.99));
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Fluffy Bunny")).getCartPrice(), equalTo(8.99));
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Valentine Bear")).getCartPrice(), equalTo(13.99));
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Stuffed Frog")).getCartSubtotal(), equalTo(10.99*2));
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Fluffy Bunny")).getCartSubtotal(), equalTo(8.99*5));
-        assertThat(cartPage.getCartProduct(prod -> prod.getCartTitle().equals("Valentine Bear")).getCartSubtotal(), equalTo(13.99*3));
-        assertThat(cartPage.totalPrice(), equalTo((10.99*2)+(8.99*5)+(13.99*3)));
+        var cartPage = homePage.clickCartButton();
+        Cart cartFrog = cartPage.getCartProduct(i -> i.getCartTitle().equals(shopFrog.getTitle()));
+        Cart cartBunny = cartPage.getCartProduct(i -> i.getCartTitle().equals(shopBunny.getTitle()));
+        Cart cartBear = cartPage.getCartProduct(i -> i.getCartTitle().equals(shopBear.getTitle()));
+        assertThat("Stuffed Frog Quantity",cartFrog.getQuantity(), equalTo(2));
+        assertThat("Stuffed Frog Price", cartFrog.getCartPrice(), equalTo(shopFrog.getPrice()));
+        assertThat("Stuffed Frog SubTotal", cartFrog.getCartSubtotal(), equalTo(shopFrog.getPrice() * cartFrog.getQuantity()));
+
+        assertThat("Fluffy Bunny Quantity",cartBunny.getQuantity(), equalTo(5));
+        assertThat("Fluffy Bunny Price", cartBunny.getCartPrice(), equalTo(shopBunny.getPrice()));
+        assertThat("Fluffy Bunny SubTotal", cartBunny.getCartSubtotal(), equalTo(shopBunny.getPrice() * cartBunny.getQuantity()));
+
+        assertThat("Valentine Bear Quantity", cartBear.getQuantity(), equalTo(3));
+        assertThat("Valentine Bear Price", cartBear.getCartPrice(), equalTo(shopBear.getPrice()));
+        assertThat("Valentine Bear SubTotal", cartBear.getCartSubtotal(), equalTo(shopBear.getPrice() * cartBear.getQuantity()));
+
+        assertThat("Total Price", cartPage.totalPrice(), equalTo(cartFrog.getCartSubtotal() + cartBunny.getCartSubtotal() + cartBear.getCartSubtotal()));
     }
 
 }

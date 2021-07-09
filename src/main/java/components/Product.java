@@ -1,4 +1,4 @@
-package Pages;
+package components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +7,9 @@ import org.openqa.selenium.WebElement;
 public class Product {
     private WebDriver driver;
     String title;
-    String cartTitle;
+
     Double price;
-    Double cartPrice;
-    Double cartSubtotal;
+
     Integer rating;
     WebElement buy;
 
@@ -22,29 +21,8 @@ public class Product {
         return rating;
     }
 
-    public Double getCartSubtotal() {
-        return cartSubtotal;
-    }
 
-    public void setCartSubtotal(Double cartSubtotal) {
-        this.cartSubtotal = cartSubtotal;
-    }
 
-    public Double getCartPrice() {
-        return cartPrice;
-    }
-
-    public void setCartPrice(Double cartPrice) {
-        this.cartPrice = cartPrice;
-    }
-
-    public String getCartTitle() {
-        return cartTitle;
-    }
-
-    public void setCartTitle(String cartTitle) {
-        this.cartTitle = cartTitle;
-    }
 
     public void setRating(Integer rating) {
         this.rating = rating;
